@@ -17,9 +17,10 @@ function login() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Inputs>();
+  } = useForm<Inputs>(); // react-hook-form
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    // react-hook-form
     if (login) {
       await signIn(data.email, data.password);
     } else {
