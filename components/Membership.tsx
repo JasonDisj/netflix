@@ -52,7 +52,10 @@ function Membership() {
               {subscription?.cancel_at_period_end
                 ? "Your membership will end on "
                 : "Your next billing date is "}
-              {subscription?.current_period_end}
+              {subscription?.current_period_end.slice(
+                0,
+                subscription?.current_period_end.length - 13
+              )}
             </p>
           </div>
 
