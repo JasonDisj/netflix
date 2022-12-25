@@ -54,7 +54,9 @@ const Home = ({
       }`}
     >
       <Head>
-        <title>Netflix</title>
+        <title>
+          {movie?.title || movie?.original_name || "Home"} - Netflix
+        </title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -88,6 +90,13 @@ const Home = ({
 export default Home;
 
 export const getServerSideProps = async () => {
+  const products = await getProducts(payments, {
+    includePrices: true,
+    activeOnly: true,
+  })
+    .then((res) => res)
+    .catch((error) => console.log(error.message));
+
   const [
     netflixOriginals,
     trendingNow,
@@ -107,13 +116,6 @@ export const getServerSideProps = async () => {
     fetch(requests.fetchRomanceMovies).then((res) => res.json()),
     fetch(requests.fetchAnimations).then((res) => res.json()),
   ]);
-
-  const products = await getProducts(payments, {
-    includePrices: true,
-    activeOnly: true,
-  })
-    .then((res) => res)
-    .catch((error) => console.log(error.message));
 
   return {
     props: {
