@@ -12,8 +12,10 @@ interface Props {
 }
 
 function Account({ products }: Props) {
-  const { user, logout } = useAuth();
+  const { user, logout, loading } = useAuth();
   const subscription = useSubscription(user);
+
+  if (loading) return null;
 
   return (
     <div className="">
