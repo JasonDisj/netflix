@@ -45,7 +45,11 @@ function Modal() {
     maxWidth: "1000px",
   };
 
-  const handleClose = () => setShowModal(false);
+  const handleClose = () => {
+    setShowModal(false);
+    setMovie(null);
+    toast.dismiss();
+  };
 
   useEffect(() => {
     if (!movie) return;
